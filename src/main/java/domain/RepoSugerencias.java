@@ -1,12 +1,13 @@
 package domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RepoSugerencias {
 
     private static RepoSugerencias instance = null;
-    private List<Sugerencia> sugerencias;
+    private List<Sugerencia> sugerencias = new ArrayList<>();
 
     public static RepoSugerencias getInstance(){
         if(instance == null){

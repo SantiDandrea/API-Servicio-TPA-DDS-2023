@@ -50,17 +50,20 @@ public class Sugeridor {
     }
 
     private boolean coincidenEnEstablecimientos(Comunidad comunidad1, Comunidad comunidad2) {
-        double establecimientosTotales = comunidad1.getEstablecimientosObservados().size() + comunidad2.getEstablecimientosObservados().size();
+        //junto la lista de establecimientos de las dos comunidades sin repetidos
+        List<Establecimiento> establecimientosTotales = new ArrayList<>();
+        establecimientosTotales.addAll(comunidad1.getEstablecimientosObservados());
         double establecimientosEnComun = comunidad1.getEstablecimientosObservados().stream().filter(s -> comunidad2.getEstablecimientosObservados().contains(s)).count();
 
-        return establecimientosEnComun / establecimientosTotales >= coincidenciaDeEstablecimientos;
+        return establecimientosEnComun / establecimientosTotales.size() >= coincidenciaDeEstablecimientos;
     }
 
     public boolean coincidenEnServicios(Comunidad comunidad1, Comunidad comunidad2) {
-        double serviciosTotales = comunidad1.getServiciosEstandar().size() + comunidad2.getServiciosEstandar().size();
+        List<Servicio> serviciosTotales = new ArrayList<>();
+        serviciosTotales.addAll(comunidad1.getServiciosEstandar());
         double serviciosEnComun = comunidad1.getServiciosEstandar().stream().filter(s -> comunidad2.getServiciosEstandar().contains(s)).count();
 
-        return serviciosEnComun / serviciosTotales >= coincidenciaDeServicios;
+        return serviciosEnComun / serviciosTotales.size() >= coincidenciaDeServicios;
     }
 
     public boolean tienenMismoGradoConfianza(Comunidad comunidad1, Comunidad comunidad2) {
@@ -68,10 +71,11 @@ public class Sugeridor {
     }
 
     private boolean tienenUsuariosEnComun(Comunidad comunidad1, Comunidad comunidad2) {
-        double usuariosTotales = comunidad1.getMiembros().size() + comunidad2.getMiembros().size();
+        List<Miembro> usuariosTotales = new ArrayList<>();
+        usuariosTotales.addAll(comunidad1.getMiembros());
         double usuariosEnComun = comunidad1.getMiembros().stream().filter(comunidad2.getMiembros()::contains).count();
 
-        return usuariosEnComun / usuariosTotales >= coincidenciaDeUsuarios;
+        return usuariosEnComun / usuariosTotales.size() >= coincidenciaDeUsuarios;
     }
 
 }
