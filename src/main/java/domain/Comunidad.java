@@ -11,6 +11,13 @@ public class Comunidad {
 //    List<Incidente> incidentesAbiertos;
 
 
+    public Comunidad(List<Establecimiento> establecimientosObservados, List<Servicio> serviciosEstandar, GradoDeConfianza gradoDeConfianza, List<Miembro> miembros) {
+        this.establecimientosObservados = establecimientosObservados;
+        this.serviciosEstandar = serviciosEstandar;
+        this.gradoDeConfianza = gradoDeConfianza;
+        this.miembros = miembros;
+    }
+
     public List<Servicio> getServiciosEstandar() {
         return serviciosEstandar;
     }
