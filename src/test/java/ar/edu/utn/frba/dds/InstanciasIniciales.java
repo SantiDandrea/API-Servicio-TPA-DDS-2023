@@ -48,10 +48,23 @@ public abstract class InstanciasIniciales {
     List<Servicio> serviciosEstandar4 = List.of(serv1, serv2, serv3, serv4, serv5);
     List<Miembro> miembros4 = List.of(miembro1, miembro2);
 
+    // Comunidad 5
+    List<Establecimiento> establecimientosObservados5 = List.of(est4, est5);
+    List<Servicio> serviciosEstandar5 = List.of(serv1, serv2, serv3, serv4, serv5);
+    List<Miembro> miembros5 = List.of(miembro1, miembro3, miembro5);
+
+    // Comunidad 6
+    List<Establecimiento> establecimientosObservados6 = List.of(est1, est2, est4, est5);
+    List<Servicio> serviciosEstandar6 = List.of(serv1, serv2, serv4, serv5);
+    List<Miembro> miembros6 = List.of(miembro2, miembro3, miembro4);
+
     Comunidad comunidad1 = new Comunidad(establecimientosObservados1, serviciosEstandar1, GradoDeConfianza.CON_RESERVAS, miembros1);
     Comunidad comunidad2 = new Comunidad(establecimientosObservados2, serviciosEstandar2, GradoDeConfianza.CON_RESERVAS, miembros2);
     Comunidad comunidad3 = new Comunidad(establecimientosObservados3, serviciosEstandar3, GradoDeConfianza.CON_RESERVAS, miembros3);
     Comunidad comunidad4 = new Comunidad(establecimientosObservados4, serviciosEstandar4, GradoDeConfianza.CON_RESERVAS, miembros4);
+    Comunidad comunidad5 = new Comunidad(establecimientosObservados5, serviciosEstandar5, GradoDeConfianza.CON_RESERVAS, miembros5);
+    Comunidad comunidad6 = new Comunidad(establecimientosObservados6, serviciosEstandar6, GradoDeConfianza.CON_RESERVAS, miembros6);
+
 
     // Agrego comunidades al repo
     RepoComunidades repo = RepoComunidades.getInstance();
@@ -60,5 +73,7 @@ public abstract class InstanciasIniciales {
         repo.agregarComunidad(comunidad2);
         repo.agregarComunidad(comunidad3);
         repo.agregarComunidad(comunidad4);
+        repo.agregarComunidad(comunidad5);
+        repo.agregarComunidad(comunidad6);
     }
 }
