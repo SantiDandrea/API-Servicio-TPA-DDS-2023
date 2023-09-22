@@ -2,6 +2,7 @@ package domain;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,16 +52,18 @@ public class Sugeridor {
 
     private boolean coincidenEnEstablecimientos(Comunidad comunidad1, Comunidad comunidad2) {
         //junto la lista de establecimientos de las dos comunidades sin repetidos
-        List<Establecimiento> establecimientosTotales = new ArrayList<>();
+        HashSet<Establecimiento> establecimientosTotales = new HashSet<>();
         establecimientosTotales.addAll(comunidad1.getEstablecimientosObservados());
+        establecimientosTotales.addAll(comunidad2.getEstablecimientosObservados());
         double establecimientosEnComun = comunidad1.getEstablecimientosObservados().stream().filter(s -> comunidad2.getEstablecimientosObservados().contains(s)).count();
 
         return establecimientosEnComun / establecimientosTotales.size() >= coincidenciaDeEstablecimientos;
     }
 
     public boolean coincidenEnServicios(Comunidad comunidad1, Comunidad comunidad2) {
-        List<Servicio> serviciosTotales = new ArrayList<>();
+        HashSet<Servicio> serviciosTotales = new HashSet<>();
         serviciosTotales.addAll(comunidad1.getServiciosEstandar());
+        serviciosTotales.addAll(comunidad2.getServiciosEstandar());
         double serviciosEnComun = comunidad1.getServiciosEstandar().stream().filter(s -> comunidad2.getServiciosEstandar().contains(s)).count();
 
         return serviciosEnComun / serviciosTotales.size() >= coincidenciaDeServicios;
@@ -71,8 +74,9 @@ public class Sugeridor {
     }
 
     private boolean tienenUsuariosEnComun(Comunidad comunidad1, Comunidad comunidad2) {
-        List<Miembro> usuariosTotales = new ArrayList<>();
+        HashSet<Miembro> usuariosTotales = new HashSet<>();
         usuariosTotales.addAll(comunidad1.getMiembros());
+        usuariosTotales.addAll(comunidad2.getMiembros());
         double usuariosEnComun = comunidad1.getMiembros().stream().filter(comunidad2.getMiembros()::contains).count();
 
         return usuariosEnComun / usuariosTotales.size() >= coincidenciaDeUsuarios;

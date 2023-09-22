@@ -2,30 +2,43 @@ package domain;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 
 public class Fusionador {
 
-    Comunidad fusionarComunidades(Sugerencia sugerencia){
+    public Comunidad fusionarComunidades(Sugerencia sugerencia){
         Comunidad comunidad1 = sugerencia.getComunidad1();
         Comunidad comunidad2 = sugerencia.getComunidad2();
 
-        //fusiono establecimientos
-        List<Establecimiento> establecimientosObservados = new ArrayList<>();
-        establecimientosObservados.addAll(comunidad1.getEstablecimientosObservados());
-        establecimientosObservados.addAll(comunidad2.getEstablecimientosObservados());
-        //fusiono servicios
-        List<Servicio> serviciosEstandar = new ArrayList<>();
-        serviciosEstandar.addAll(comunidad1.getServiciosEstandar());
-        serviciosEstandar.addAll(comunidad2.getServiciosEstandar());
-        //agrego grado de confianza (es el mismo en las dos comunidades
+
+        List<Establecimiento> establecimientosObservados = fusionarEstablecimientos(comunidad1, comunidad2);
+        List<Servicio> serviciosEstandar = fusionarServicios(comunidad1, comunidad2);
         GradoDeConfianza gradoDeConfianza = comunidad1.getGradoDeConfianza();
-        //fusiono miembros
-        List<Miembro> miembros = new ArrayList<>();
-        miembros.addAll(comunidad1.getMiembros());
-        miembros.addAll(comunidad2.getMiembros());
+        List<Miembro> miembros = fusionarMiembros(comunidad1, comunidad2);
 
         return new Comunidad(establecimientosObservados, serviciosEstandar, gradoDeConfianza, miembros);
+    }
+
+    private List<Establecimiento> fusionarEstablecimientos(Comunidad comunidad1, Comunidad comunidad2) {
+        HashSet<Establecimiento> establecimientosObservadosCopia = new HashSet<>();
+        establecimientosObservadosCopia.addAll(comunidad1.getEstablecimientosObservados());
+        establecimientosObservadosCopia.addAll(comunidad2.getEstablecimientosObservados());
+        return new ArrayList<>(establecimientosObservadosCopia);
+    }
+
+    private List<Servicio> fusionarServicios(Comunidad comunidad1, Comunidad comunidad2){
+        HashSet<Servicio> serviciosEstandarCopia = new HashSet<>();
+        serviciosEstandarCopia.addAll(comunidad1.getServiciosEstandar());
+        serviciosEstandarCopia.addAll(comunidad2.getServiciosEstandar());
+        return new ArrayList<>(serviciosEstandarCopia);
+    }
+
+    private List<Miembro> fusionarMiembros(Comunidad comunidad1, Comunidad comunidad2){
+        HashSet<Miembro> miembrosCopia = new HashSet<>();
+        miembrosCopia.addAll(comunidad1.getMiembros());
+        miembrosCopia.addAll(comunidad2.getMiembros());
+        return new ArrayList<>(miembrosCopia);
     }
 }
