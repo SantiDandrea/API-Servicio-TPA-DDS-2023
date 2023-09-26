@@ -43,11 +43,12 @@ public class Comunidad {
 
     public Comunidad(){ }
 
-    public Comunidad(List<Establecimiento> establecimientosObservados, List<Servicio> serviciosEstandar, GradoDeConfianza gradoDeConfianza, List<Miembro> miembros) {
+    public Comunidad(List<Establecimiento> establecimientosObservados, List<Servicio> serviciosEstandar, GradoDeConfianza gradoDeConfianza, List<Miembro> miembros, List<Incidente> incidentes) {
         this.establecimientosObservados = establecimientosObservados;
         this.serviciosEstandar = serviciosEstandar;
         this.gradoDeConfianza = gradoDeConfianza;
         this.miembros = miembros;
+        this.incidentesAbiertos = incidentes;
     }
 
     public List<Servicio> getServiciosEstandar() {

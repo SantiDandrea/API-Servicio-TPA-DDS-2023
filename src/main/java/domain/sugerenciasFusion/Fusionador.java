@@ -2,6 +2,7 @@ package domain.sugerenciasFusion;
 
 
 import domain.comunidades.Comunidad;
+import domain.comunidades.Incidente;
 import domain.comunidades.Miembro;
 import domain.establecimientos.Establecimiento;
 import domain.servicios.Servicio;
@@ -23,9 +24,16 @@ public class Fusionador {
         GradoDeConfianza gradoDeConfianza = comunidad1.getGradoDeConfianza();
         List<Miembro> miembros = fusionarMiembros(comunidad1, comunidad2);
         //List<Usuario> admins = fusionarAdministradores(comunidad1, comunidad2);
-        //List<Incidente> incidentesAbiertos = fusionarIncidentes(comunidad1, comunidad2);
+        List<Incidente> incidentesAbiertos = fusionarIncidentes(comunidad1, comunidad2);
 
-        return new Comunidad(establecimientosObservados, serviciosEstandar, gradoDeConfianza, miembros);
+        return new Comunidad(establecimientosObservados, serviciosEstandar, gradoDeConfianza, miembros, incidentesAbiertos);
+    }
+
+    private List<Incidente> fusionarIncidentes(Comunidad comunidad1, Comunidad comunidad2) {
+        HashSet<Incidente> incidentesAbiertosCopia = new HashSet<>();
+        incidentesAbiertosCopia.addAll(comunidad1.getIncidentesAbiertos());
+        incidentesAbiertosCopia.addAll(comunidad2.getIncidentesAbiertos());
+        return new ArrayList<>(incidentesAbiertosCopia);
     }
 
     private List<Establecimiento> fusionarEstablecimientos(Comunidad comunidad1, Comunidad comunidad2) {

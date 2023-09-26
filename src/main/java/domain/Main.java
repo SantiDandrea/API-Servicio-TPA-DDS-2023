@@ -2,6 +2,7 @@ package domain;
 
 import Utils.BDUtils;
 import domain.comunidades.Comunidad;
+import domain.comunidades.Incidente;
 import domain.comunidades.Miembro;
 import domain.establecimientos.Establecimiento;
 import domain.servicios.Servicio;
@@ -79,10 +80,18 @@ public class Main {
     List<Servicio> serviciosEstandar4 = List.of(servicios.get(1));
     List<Miembro> miembros4 = List.of(miembro1, miembro3, miembro6);
 
-    Comunidad comunidad1 = new Comunidad(establecimientosObservados1, serviciosEstandar1, GradoDeConfianza.CON_RESERVAS, miembros1);
-    Comunidad comunidad2 = new Comunidad(establecimientosObservados2, serviciosEstandar2, GradoDeConfianza.CON_RESERVAS, miembros2);
-    Comunidad comunidad3 = new Comunidad(establecimientosObservados3, serviciosEstandar3, GradoDeConfianza.CON_RESERVAS, miembros3);
-    Comunidad comunidad4 = new Comunidad(establecimientosObservados4, serviciosEstandar4, GradoDeConfianza.CON_RESERVAS, miembros4);
+    Incidente inc1 = new Incidente();
+    Incidente inc2 = new Incidente();
+    Incidente inc3 = new Incidente();
+    Incidente inc4 = new Incidente();
+
+    List<Incidente> incidentes1 = List.of(inc1,inc2);
+    List<Incidente> incidentes2 = List.of(inc3,inc4);
+
+    Comunidad comunidad1 = new Comunidad(establecimientosObservados1, serviciosEstandar1, GradoDeConfianza.CON_RESERVAS, miembros1, incidentes1);
+    Comunidad comunidad2 = new Comunidad(establecimientosObservados2, serviciosEstandar2, GradoDeConfianza.CON_RESERVAS, miembros2, incidentes2);
+    Comunidad comunidad3 = new Comunidad(establecimientosObservados3, serviciosEstandar3, GradoDeConfianza.CON_RESERVAS, miembros3, incidentes1);
+    Comunidad comunidad4 = new Comunidad(establecimientosObservados4, serviciosEstandar4, GradoDeConfianza.CON_RESERVAS, miembros4, incidentes2);
 
     return List.of(comunidad1, comunidad2, comunidad3, comunidad4);
   }
