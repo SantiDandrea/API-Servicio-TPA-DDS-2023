@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds;
 
-import domain.*;
+import domain.sugerenciasFusion.Sugerencia;
+import domain.sugerenciasFusion.Sugeridor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,11 +1,14 @@
-package domain;
+package domain.comunidades;
+import Utils.BDUtils;
 import lombok.Setter;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
 @Setter
 public class RepoComunidades {
+    private EntityManager em = BDUtils.getEntityManager();
     private static RepoComunidades instance = null;
     private List<Comunidad> comunidades = new ArrayList<>();
 
@@ -17,7 +20,9 @@ public class RepoComunidades {
     }
 
     public List<Comunidad> getComunidades() {
-        return comunidades;
+        return em
+            .createQuery("from Comunidad")
+            .getResultList();
     }
 
     public void agregarComunidad(Comunidad comu) {

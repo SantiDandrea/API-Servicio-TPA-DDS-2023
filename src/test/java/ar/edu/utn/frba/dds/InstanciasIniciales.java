@@ -1,6 +1,11 @@
 package ar.edu.utn.frba.dds;
 
-import domain.*;
+import domain.comunidades.Comunidad;
+import domain.comunidades.Miembro;
+import domain.comunidades.RepoComunidades;
+import domain.establecimientos.Establecimiento;
+import domain.servicios.Servicio;
+import domain.sugerenciasFusion.GradoDeConfianza;
 
 import java.util.List;
 

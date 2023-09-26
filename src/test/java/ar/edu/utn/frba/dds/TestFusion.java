@@ -1,13 +1,12 @@
 package ar.edu.utn.frba.dds;
 
-import domain.Comunidad;
-import domain.Fusionador;
-import domain.Sugerencia;
+import domain.comunidades.Comunidad;
+import domain.sugerenciasFusion.Fusionador;
+import domain.sugerenciasFusion.Sugerencia;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class TestFusion extends InstanciasIniciales{
 

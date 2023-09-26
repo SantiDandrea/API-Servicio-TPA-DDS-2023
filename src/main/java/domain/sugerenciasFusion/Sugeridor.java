@@ -1,4 +1,10 @@
-package domain;
+package domain.sugerenciasFusion;
+
+import domain.comunidades.Comunidad;
+import domain.comunidades.Miembro;
+import domain.comunidades.RepoComunidades;
+import domain.establecimientos.Establecimiento;
+import domain.servicios.Servicio;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,9 +24,17 @@ public class Sugeridor {
     double coincidenciaDeServicios = 0.75;
     double coincidenciaDeUsuarios = 0.05;
 
+    private static Sugeridor instance = null;
 
+    public static Sugeridor getInstance(){
+        if(instance == null){
+            instance = new Sugeridor();
+        }
+        return instance;
+    }
     public List<Sugerencia> sugerirFusiones (){
         List<Comunidad> comunidades = RepoComunidades.getInstance().getComunidades();
+        System.out.println("\n Cantidad de comunidades :\n" + comunidades.size());
         List<Sugerencia> sugerencias = new ArrayList<Sugerencia>();
         while(comunidades.size() > 1){
             Comunidad comunidad = comunidades.remove(0);
