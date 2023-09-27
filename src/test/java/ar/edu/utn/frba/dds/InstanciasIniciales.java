@@ -1,9 +1,7 @@
 package ar.edu.utn.frba.dds;
 
-import domain.comunidades.Comunidad;
-import domain.comunidades.Incidente;
-import domain.comunidades.Miembro;
-import domain.comunidades.RepoComunidades;
+import domain.clasesTecnicas.Usuario;
+import domain.comunidades.*;
 import domain.establecimientos.Establecimiento;
 import domain.servicios.Servicio;
 import domain.sugerenciasFusion.GradoDeConfianza;
@@ -72,12 +70,18 @@ public abstract class InstanciasIniciales {
     List<Incidente> incidentes1 = List.of(inc1,inc2);
     List<Incidente> incidentes2 = List.of(inc3,inc4);
 
-    Comunidad comunidad1 = new Comunidad("com1", establecimientosObservados1, serviciosEstandar1, GradoDeConfianza.CON_RESERVAS, miembros1, incidentes1);
-    Comunidad comunidad2 = new Comunidad("com2", establecimientosObservados2, serviciosEstandar2, GradoDeConfianza.CON_RESERVAS, miembros2, incidentes2);
-    Comunidad comunidad3 = new Comunidad("com3", establecimientosObservados3, serviciosEstandar3, GradoDeConfianza.CON_RESERVAS, miembros3, incidentes1);
-    Comunidad comunidad4 = new Comunidad("com4", establecimientosObservados4, serviciosEstandar4, GradoDeConfianza.CON_RESERVAS, miembros4, incidentes2);
-    Comunidad comunidad5 = new Comunidad("com5", establecimientosObservados5, serviciosEstandar5, GradoDeConfianza.CON_RESERVAS, miembros5, incidentes1);
-    Comunidad comunidad6 = new Comunidad("com6", establecimientosObservados6, serviciosEstandar6, GradoDeConfianza.CON_RESERVAS, miembros6, incidentes2);
+    Administrador admin1 = new Administrador();
+    Administrador admin2 = new Administrador();
+
+    List<Administrador> admins1 = List.of(admin1);
+    List<Administrador> admins2 = List.of(admin2);
+
+    Comunidad comunidad1 = new Comunidad("com1", establecimientosObservados1, serviciosEstandar1, GradoDeConfianza.CON_RESERVAS, miembros1, incidentes1, admins1);
+    Comunidad comunidad2 = new Comunidad("com2", establecimientosObservados2, serviciosEstandar2, GradoDeConfianza.CON_RESERVAS, miembros2, incidentes2, admins2);
+    Comunidad comunidad3 = new Comunidad("com3", establecimientosObservados3, serviciosEstandar3, GradoDeConfianza.CON_RESERVAS, miembros3, incidentes1, admins1);
+    Comunidad comunidad4 = new Comunidad("com4", establecimientosObservados4, serviciosEstandar4, GradoDeConfianza.CON_RESERVAS, miembros4, incidentes2, admins2);
+    Comunidad comunidad5 = new Comunidad("com5", establecimientosObservados5, serviciosEstandar5, GradoDeConfianza.CON_RESERVAS, miembros5, incidentes1, admins1);
+    Comunidad comunidad6 = new Comunidad("com6", establecimientosObservados6, serviciosEstandar6, GradoDeConfianza.CON_RESERVAS, miembros6, incidentes2, admins2);
 
 
     // Agrego comunidades al repo

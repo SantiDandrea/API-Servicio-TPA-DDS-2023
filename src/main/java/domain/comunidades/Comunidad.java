@@ -1,5 +1,6 @@
 package domain.comunidades;
 
+import domain.clasesTecnicas.Usuario;
 import domain.establecimientos.Establecimiento;
 import domain.sugerenciasFusion.GradoDeConfianza;
 import domain.servicios.Servicio;
@@ -43,13 +44,15 @@ public class Comunidad {
 
     public Comunidad(){ }
 
-    public Comunidad(String nombre, List<Establecimiento> establecimientosObservados, List<Servicio> serviciosEstandar, GradoDeConfianza gradoDeConfianza, List<Miembro> miembros, List<Incidente> incidentes) {
+    public Comunidad(String nombre, List<Establecimiento> establecimientosObservados, List<Servicio> serviciosEstandar, GradoDeConfianza gradoDeConfianza, List<Miembro> miembros, List<Incidente> incidentes, List<Administrador> admins) {
         this.nombre = nombre;
         this.establecimientosObservados = establecimientosObservados;
         this.serviciosEstandar = serviciosEstandar;
         this.gradoDeConfianza = gradoDeConfianza;
         this.miembros = miembros;
         this.incidentesAbiertos = incidentes;
+        this.administradores = admins;
+
     }
 
     public List<Servicio> getServiciosEstandar() {
