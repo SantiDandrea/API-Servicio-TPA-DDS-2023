@@ -43,7 +43,8 @@ public class Comunidad {
 
     public Comunidad(){ }
 
-    public Comunidad(List<Establecimiento> establecimientosObservados, List<Servicio> serviciosEstandar, GradoDeConfianza gradoDeConfianza, List<Miembro> miembros, List<Incidente> incidentes) {
+    public Comunidad(String nombre, List<Establecimiento> establecimientosObservados, List<Servicio> serviciosEstandar, GradoDeConfianza gradoDeConfianza, List<Miembro> miembros, List<Incidente> incidentes) {
+        this.nombre = nombre;
         this.establecimientosObservados = establecimientosObservados;
         this.serviciosEstandar = serviciosEstandar;
         this.gradoDeConfianza = gradoDeConfianza;

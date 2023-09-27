@@ -72,12 +72,12 @@ public abstract class InstanciasIniciales {
     List<Incidente> incidentes1 = List.of(inc1,inc2);
     List<Incidente> incidentes2 = List.of(inc3,inc4);
 
-    Comunidad comunidad1 = new Comunidad(establecimientosObservados1, serviciosEstandar1, GradoDeConfianza.CON_RESERVAS, miembros1, incidentes1);
-    Comunidad comunidad2 = new Comunidad(establecimientosObservados2, serviciosEstandar2, GradoDeConfianza.CON_RESERVAS, miembros2, incidentes2);
-    Comunidad comunidad3 = new Comunidad(establecimientosObservados3, serviciosEstandar3, GradoDeConfianza.CON_RESERVAS, miembros3, incidentes1);
-    Comunidad comunidad4 = new Comunidad(establecimientosObservados4, serviciosEstandar4, GradoDeConfianza.CON_RESERVAS, miembros4, incidentes2);
-    Comunidad comunidad5 = new Comunidad(establecimientosObservados5, serviciosEstandar5, GradoDeConfianza.CON_RESERVAS, miembros5, incidentes1);
-    Comunidad comunidad6 = new Comunidad(establecimientosObservados6, serviciosEstandar6, GradoDeConfianza.CON_RESERVAS, miembros6, incidentes2);
+    Comunidad comunidad1 = new Comunidad("com1", establecimientosObservados1, serviciosEstandar1, GradoDeConfianza.CON_RESERVAS, miembros1, incidentes1);
+    Comunidad comunidad2 = new Comunidad("com2", establecimientosObservados2, serviciosEstandar2, GradoDeConfianza.CON_RESERVAS, miembros2, incidentes2);
+    Comunidad comunidad3 = new Comunidad("com3", establecimientosObservados3, serviciosEstandar3, GradoDeConfianza.CON_RESERVAS, miembros3, incidentes1);
+    Comunidad comunidad4 = new Comunidad("com4", establecimientosObservados4, serviciosEstandar4, GradoDeConfianza.CON_RESERVAS, miembros4, incidentes2);
+    Comunidad comunidad5 = new Comunidad("com5", establecimientosObservados5, serviciosEstandar5, GradoDeConfianza.CON_RESERVAS, miembros5, incidentes1);
+    Comunidad comunidad6 = new Comunidad("com6", establecimientosObservados6, serviciosEstandar6, GradoDeConfianza.CON_RESERVAS, miembros6, incidentes2);
 
 
     // Agrego comunidades al repo

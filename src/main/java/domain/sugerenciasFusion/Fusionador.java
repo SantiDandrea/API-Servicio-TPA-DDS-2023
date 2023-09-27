@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Fusionador {
 
-    public Comunidad fusionarComunidades(Sugerencia sugerencia){
+    public Comunidad fusionarComunidades(Sugerencia sugerencia, String nombreNuevaComunidad){
         Comunidad comunidad1 = sugerencia.getComunidad1();
         Comunidad comunidad2 = sugerencia.getComunidad2();
 
@@ -26,7 +26,7 @@ public class Fusionador {
         //List<Usuario> admins = fusionarAdministradores(comunidad1, comunidad2);
         List<Incidente> incidentesAbiertos = fusionarIncidentes(comunidad1, comunidad2);
 
-        return new Comunidad(establecimientosObservados, serviciosEstandar, gradoDeConfianza, miembros, incidentesAbiertos);
+        return new Comunidad(nombreNuevaComunidad,establecimientosObservados, serviciosEstandar, gradoDeConfianza, miembros, incidentesAbiertos);
     }
 
     private List<Incidente> fusionarIncidentes(Comunidad comunidad1, Comunidad comunidad2) {

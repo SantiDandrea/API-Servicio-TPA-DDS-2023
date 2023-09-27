@@ -9,39 +9,59 @@ import domain.servicios.Servicio;
 import domain.sugerenciasFusion.GradoDeConfianza;
 import domain.sugerenciasFusion.Sugerencia;
 import domain.sugerenciasFusion.Sugeridor;
+import handlers.GetSugerenciasHandler;
+import handlers.PostAceptacionSugerencia;
+import io.javalin.Javalin;
+import io.javalin.openapi.plugin.OpenApiConfiguration;
+import io.javalin.openapi.plugin.OpenApiPlugin;
+import io.javalin.openapi.plugin.swagger.SwaggerConfiguration;
+import io.javalin.openapi.plugin.swagger.SwaggerPlugin;
+
+import static io.javalin.apibuilder.ApiBuilder.*;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
   public static void main(String[] args) {
-    EntityManager em = BDUtils.getEntityManager();
+    /*EntityManager em = BDUtils.getEntityManager();
     BDUtils.comenzarTransaccion(em);
 
     List<Servicio> servicios = em.createQuery("FROM Servicio", Servicio.class).getResultList();
     servicios.forEach(s->System.out.println(s.getNombre()));
     List<Establecimiento> establecimientos = em.createQuery("FROM Establecimiento ", Establecimiento.class).getResultList();
     establecimientos.forEach(e->System.out.println(e.getId()));
-    /*List<Miembro> miembros = em.createQuery("FROM Miembro ", Miembro.class).getResultList();
+    List<Miembro> miembros = em.createQuery("FROM Miembro ", Miembro.class).getResultList();
     miembros.forEach(m->em.remove(m));
     em.flush();
     //List<Comunidad> comunidades = em.createQuery("FROM Comunidad ", Comunidad.class).getResultList();
     List<Comunidad> comunidades = crearInstancias(establecimientos, servicios, em);
     comunidades.forEach(c-> em.merge(c));
-    em.flush();*/
+    em.flush();
     Sugeridor sugeridor = new Sugeridor();
     List<Sugerencia> sugerencias = sugeridor.sugerirFusiones();
     System.out.println("\n Cantidad de sugerencias: \n"+sugerencias.size());
     sugerencias.forEach(s->em.persist(s));
+    BDUtils.commit(em);
+    em.close();
+    */
+    Javalin app = Javalin.create(config -> {
+      config.plugins.register(new OpenApiPlugin(new OpenApiConfiguration()));
+      config.plugins.register(new SwaggerPlugin(new SwaggerConfiguration()));
+    }).start(7002);
 
-    /*
+    app.get("/api/sugerencias", new GetSugerenciasHandler());
+    app.post("/api/sugerencias/{id}", new PostAceptacionSugerencia());
+
+
     ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     // Programa la tarea para que se ejecute cada 7 dias
     scheduler.scheduleAtFixedRate(new Sugerir(), 0, 7, TimeUnit.DAYS);
-*/
-    BDUtils.commit(em);
-    em.close();
+
   }
 
   private static List<Comunidad> crearInstancias(List<Establecimiento> est, List<Servicio> servicios, EntityManager em){
@@ -88,10 +108,10 @@ public class Main {
     List<Incidente> incidentes1 = List.of(inc1,inc2);
     List<Incidente> incidentes2 = List.of(inc3,inc4);
 
-    Comunidad comunidad1 = new Comunidad(establecimientosObservados1, serviciosEstandar1, GradoDeConfianza.CON_RESERVAS, miembros1, incidentes1);
-    Comunidad comunidad2 = new Comunidad(establecimientosObservados2, serviciosEstandar2, GradoDeConfianza.CON_RESERVAS, miembros2, incidentes2);
-    Comunidad comunidad3 = new Comunidad(establecimientosObservados3, serviciosEstandar3, GradoDeConfianza.CON_RESERVAS, miembros3, incidentes1);
-    Comunidad comunidad4 = new Comunidad(establecimientosObservados4, serviciosEstandar4, GradoDeConfianza.CON_RESERVAS, miembros4, incidentes2);
+    Comunidad comunidad1 = new Comunidad("com1",establecimientosObservados1, serviciosEstandar1, GradoDeConfianza.CON_RESERVAS, miembros1, incidentes1);
+    Comunidad comunidad2 = new Comunidad("com2",establecimientosObservados2, serviciosEstandar2, GradoDeConfianza.CON_RESERVAS, miembros2, incidentes2);
+    Comunidad comunidad3 = new Comunidad("com3",establecimientosObservados3, serviciosEstandar3, GradoDeConfianza.CON_RESERVAS, miembros3, incidentes1);
+    Comunidad comunidad4 = new Comunidad("com4",establecimientosObservados4, serviciosEstandar4, GradoDeConfianza.CON_RESERVAS, miembros4, incidentes2);
 
     return List.of(comunidad1, comunidad2, comunidad3, comunidad4);
   }

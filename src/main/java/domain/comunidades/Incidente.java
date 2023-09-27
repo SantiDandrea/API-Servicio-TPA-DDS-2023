@@ -30,6 +30,7 @@ public class Incidente {
   private List<Comunidad> comunidades;
 
   private LocalDateTime horarioApertura;
+  @Getter
   private LocalDateTime horarioCierre;
   private EstadoIncidente estadoIncidente;
   public Incidente() {  }
@@ -39,7 +40,7 @@ public class Incidente {
   }
 
   public boolean cerradoUltimaSemana(){
-    return Duration.between(this.getHorarioCierre() , LocalDateTime.now()).minusDays(7).isNegative();
+    return Duration.between(this.horarioCierre , LocalDateTime.now()).minusDays(7).isNegative();
   }
 
   @Override
