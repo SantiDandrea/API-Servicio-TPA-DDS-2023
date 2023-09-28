@@ -1,5 +1,6 @@
 package domain.comunidades;
 
+import domain.clasesTecnicas.Usuario;
 import domain.establecimientos.Establecimiento;
 import domain.sugerenciasFusion.GradoDeConfianza;
 import domain.servicios.Servicio;

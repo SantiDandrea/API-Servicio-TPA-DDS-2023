@@ -14,19 +14,19 @@ public class TestFusion extends InstanciasIniciales{
     Sugerencia sugerencia = new Sugerencia(comunidad3, comunidad4, LocalDate.now());
     @Test
     void fusionadorFusionaMiembros(){
-        Comunidad comunidadFusionada = fusionador.fusionarComunidades(sugerencia);
+        Comunidad comunidadFusionada = fusionador.fusionarComunidades(sugerencia, "comu3&4");
         Assertions.assertEquals(5, comunidadFusionada.getMiembros().size());
     }
 
     @Test
     void fusionadorFusionaEstablecimientos(){
-        Comunidad comunidadFusionada = fusionador.fusionarComunidades(sugerencia);
+        Comunidad comunidadFusionada = fusionador.fusionarComunidades(sugerencia, "comu3&4");
         Assertions.assertEquals(3, comunidadFusionada.getEstablecimientosObservados().size());
     }
 
     @Test
     void fusionadorFusionaServicios(){
-        Comunidad comunidadFusionada = fusionador.fusionarComunidades(sugerencia);
+        Comunidad comunidadFusionada = fusionador.fusionarComunidades(sugerencia, "comu3&4");
         Assertions.assertEquals(5, comunidadFusionada.getServiciosEstandar().size());
     }*/
 }

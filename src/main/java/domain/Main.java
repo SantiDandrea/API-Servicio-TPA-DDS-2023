@@ -1,12 +1,6 @@
 package domain;
 
 import Utils.BDUtils;
-import domain.comunidades.Comunidad;
-import domain.comunidades.Incidente;
-import domain.comunidades.Miembro;
-import domain.establecimientos.Establecimiento;
-import domain.servicios.Servicio;
-import domain.sugerenciasFusion.GradoDeConfianza;
 import domain.sugerenciasFusion.Sugerencia;
 import domain.sugerenciasFusion.Sugeridor;
 import handlers.GetSugerenciasHandler;
@@ -16,8 +10,6 @@ import io.javalin.openapi.plugin.OpenApiConfiguration;
 import io.javalin.openapi.plugin.OpenApiPlugin;
 import io.javalin.openapi.plugin.swagger.SwaggerConfiguration;
 import io.javalin.openapi.plugin.swagger.SwaggerPlugin;
-
-import static io.javalin.apibuilder.ApiBuilder.*;
 
 import javax.persistence.EntityManager;
 import java.util.List;

@@ -1,9 +1,7 @@
 package ar.edu.utn.frba.dds;
 
-import domain.comunidades.Comunidad;
-import domain.comunidades.Incidente;
-import domain.comunidades.Miembro;
-import domain.comunidades.RepoComunidades;
+import domain.clasesTecnicas.Usuario;
+import domain.comunidades.*;
 import domain.establecimientos.Establecimiento;
 import domain.servicios.Servicio;
 import domain.sugerenciasFusion.GradoDeConfianza;

@@ -49,8 +49,8 @@ public class GetSugerenciasHandler implements Handler {
     ComunidadDTO comunidadDTO = new ComunidadDTO();
     comunidadDTO.setId(comunidad.getId());
     comunidadDTO.setNombre(comunidad.getNombre());
-    List<MiembroDTO> afectadosDTO = comunidad.getAfectados().stream().map(this::mapMiembroToDTO).toList();
-    List<MiembroDTO> observadoresDTO = comunidad.getObservadores().stream().map(this::mapMiembroToDTO).toList();
+    List<MiembroDTO> afectadosDTO = comunidad.getAfectados().stream().map(this::mapMiembroToDTO).collect(Collectors.toList());
+    List<MiembroDTO> observadoresDTO = comunidad.getObservadores().stream().map(this::mapMiembroToDTO).collect(Collectors.toList());
     comunidadDTO.setAfectados(afectadosDTO);
     comunidadDTO.setObservadores(observadoresDTO);
     return comunidadDTO;
