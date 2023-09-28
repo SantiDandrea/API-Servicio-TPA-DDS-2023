@@ -18,8 +18,9 @@ public class RepoComunidades {
         }
         return instance;
     }
-
+    @SuppressWarnings("unchecked")
     public List<Comunidad> getComunidades() {
+        System.out.println("\n\nhola2\n\n");
         return em
             .createQuery("from Comunidad")
             .getResultList();

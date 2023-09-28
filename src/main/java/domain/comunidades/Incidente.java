@@ -12,35 +12,50 @@ import java.util.List;
 @Getter
 @Entity
 public class Incidente {
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "incidente_id")
   private int id;
 
-  @ManyToOne(cascade = CascadeType.REMOVE)
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "servicio_id", referencedColumnName = "servicio_id")
   private Servicio servicio;
 
-  /*@ManyToOne TODO:implementar agrupacion
+  /*@ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "agrupacion_id", referencedColumnName = "id")
   private Agrupacion agrupacion;*/
   private String observacion;
 
-  @ManyToMany(mappedBy = "incidentesAbiertos")
-  private List<Comunidad> comunidades;
+  /*@ManyToMany(mappedBy = "incidentesAbiertos", cascade = CascadeType.ALL)
+  private List<Comunidad> comunidades;*/
 
   private LocalDateTime horarioApertura;
-  @Getter
   private LocalDateTime horarioCierre;
   private EstadoIncidente estadoIncidente;
-  public Incidente() {  }
+
+  public Incidente(Servicio servicio, String observacion, LocalDateTime horarioApertura,
+                   LocalDateTime horarioCierre, EstadoIncidente estadoIncidente) {
+    this.servicio = servicio;
+    this.observacion = observacion;
+    this.horarioApertura = horarioApertura;
+    this.horarioCierre = horarioCierre;
+    this.estadoIncidente = estadoIncidente;
+  }
+
+  public Incidente() {
+
+  }
 
   public Duration obtenerTiempoCierre(){
     return Duration.between(horarioApertura, horarioCierre);
   }
 
+  public boolean tieneEstado(EstadoIncidente estado){
+    return this.estadoIncidente.equals(estado);
+  }
+
   public boolean cerradoUltimaSemana(){
-    return Duration.between(this.horarioCierre , LocalDateTime.now()).minusDays(7).isNegative();
+    return Duration.between(this.getHorarioCierre() , LocalDateTime.now()).minusDays(7).isNegative();
   }
 
   @Override

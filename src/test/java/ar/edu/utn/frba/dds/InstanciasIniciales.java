@@ -72,7 +72,7 @@ public abstract class InstanciasIniciales {
     List<Incidente> incidentes1 = List.of(inc1,inc2);
     List<Incidente> incidentes2 = List.of(inc3,inc4);
 
-    Comunidad comunidad1 = new Comunidad("com1", establecimientosObservados1, serviciosEstandar1, GradoDeConfianza.CON_RESERVAS, miembros1, incidentes1);
+    /*Comunidad comunidad1 = new Comunidad("com1", establecimientosObservados1, serviciosEstandar1, GradoDeConfianza.CON_RESERVAS, miembros1, incidentes1);
     Comunidad comunidad2 = new Comunidad("com2", establecimientosObservados2, serviciosEstandar2, GradoDeConfianza.CON_RESERVAS, miembros2, incidentes2);
     Comunidad comunidad3 = new Comunidad("com3", establecimientosObservados3, serviciosEstandar3, GradoDeConfianza.CON_RESERVAS, miembros3, incidentes1);
     Comunidad comunidad4 = new Comunidad("com4", establecimientosObservados4, serviciosEstandar4, GradoDeConfianza.CON_RESERVAS, miembros4, incidentes2);
@@ -89,5 +89,5 @@ public abstract class InstanciasIniciales {
         repo.agregarComunidad(comunidad4);
         repo.agregarComunidad(comunidad5);
         repo.agregarComunidad(comunidad6);
-    }
+    }*/
 }

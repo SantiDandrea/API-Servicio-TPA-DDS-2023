@@ -1,6 +1,7 @@
 package domain.sugerenciasFusion;
 
 
+import domain.comunidades.Administrador;
 import domain.comunidades.Comunidad;
 import domain.comunidades.Incidente;
 import domain.comunidades.Miembro;
@@ -22,17 +23,22 @@ public class Fusionador {
         List<Establecimiento> establecimientosObservados = fusionarEstablecimientos(comunidad1, comunidad2);
         List<Servicio> serviciosEstandar = fusionarServicios(comunidad1, comunidad2);
         GradoDeConfianza gradoDeConfianza = comunidad1.getGradoDeConfianza();
-        List<Miembro> miembros = fusionarMiembros(comunidad1, comunidad2);
-        //List<Usuario> admins = fusionarAdministradores(comunidad1, comunidad2);
+        List<Miembro> afectados = fusionarAfectados(comunidad1, comunidad2);
+        List<Miembro> observadores = fusionarObservadores(comunidad1, comunidad2);
+        List<Administrador> admins = fusionarAdministradores(comunidad1, comunidad2);
         List<Incidente> incidentesAbiertos = fusionarIncidentes(comunidad1, comunidad2);
 
-        return new Comunidad(nombreNuevaComunidad,establecimientosObservados, serviciosEstandar, gradoDeConfianza, miembros, incidentesAbiertos);
+        return new Comunidad(nombreNuevaComunidad,afectados, observadores, admins,
+            establecimientosObservados, serviciosEstandar, gradoDeConfianza, incidentesAbiertos);
     }
 
     private List<Incidente> fusionarIncidentes(Comunidad comunidad1, Comunidad comunidad2) {
         HashSet<Incidente> incidentesAbiertosCopia = new HashSet<>();
         incidentesAbiertosCopia.addAll(comunidad1.getIncidentesAbiertos());
+        comunidad1.getIncidentesAbiertos().forEach(i-> System.out.println(i.getId()));
         incidentesAbiertosCopia.addAll(comunidad2.getIncidentesAbiertos());
+        System.out.println("Incidentes abiertos:");
+        incidentesAbiertosCopia.forEach(i-> System.out.println(i.getId()));
         return new ArrayList<>(incidentesAbiertosCopia);
     }
 
@@ -50,10 +56,26 @@ public class Fusionador {
         return new ArrayList<>(serviciosEstandarCopia);
     }
 
-    private List<Miembro> fusionarMiembros(Comunidad comunidad1, Comunidad comunidad2){
+    private List<Miembro> fusionarAfectados(Comunidad comunidad1, Comunidad comunidad2){
         HashSet<Miembro> miembrosCopia = new HashSet<>();
-        miembrosCopia.addAll(comunidad1.getMiembros());
-        miembrosCopia.addAll(comunidad2.getMiembros());
+        miembrosCopia.addAll(comunidad1.getAfectados());
+        miembrosCopia.addAll(comunidad2.getAfectados());
+        System.out.println("\n\n cantidad de afectados: "+miembrosCopia.size()+"\n\n");
         return new ArrayList<>(miembrosCopia);
+    }
+
+    private List<Miembro> fusionarObservadores(Comunidad comunidad1, Comunidad comunidad2){
+        HashSet<Miembro> miembrosCopia = new HashSet<>();
+        miembrosCopia.addAll(comunidad1.getObservadores());
+        miembrosCopia.addAll(comunidad2.getObservadores());
+        System.out.println("\n\n cantidad de observadores: "+miembrosCopia.size()+"\n\n");
+        return new ArrayList<>(miembrosCopia);
+    }
+
+    private List<Administrador> fusionarAdministradores(Comunidad comunidad1, Comunidad comunidad2) {
+        HashSet<Administrador> administradoresCopia = new HashSet<>();
+        administradoresCopia.addAll(comunidad1.getAdministradores());
+        administradoresCopia.addAll(comunidad2.getAdministradores());
+        return new ArrayList<>(administradoresCopia);
     }
 }

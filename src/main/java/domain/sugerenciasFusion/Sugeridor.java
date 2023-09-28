@@ -49,6 +49,7 @@ public class Sugeridor {
                 comunidades.remove(optionalComunidad);
             }
         }
+        System.out.println("\n Cantidad de sugerencias :" + sugerencias.size());
         return sugerencias;
     }
 

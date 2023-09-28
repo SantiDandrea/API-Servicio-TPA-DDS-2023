@@ -1,7 +1,10 @@
 package handlers;
 
+import Utils.BDUtils;
 import domain.comunidades.Comunidad;
 import domain.comunidades.RepoComunidades;
+import domain.sugerenciasFusion.Fusionador;
+import domain.sugerenciasFusion.RepoSugerencias;
 import domain.sugerenciasFusion.Sugerencia;
 import handlers.dto.AceptacionSugerencia;
 import io.javalin.http.BadRequestResponse;
@@ -11,6 +14,7 @@ import io.javalin.http.InternalServerErrorResponse;
 import io.javalin.openapi.*;
 import org.jetbrains.annotations.NotNull;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 public class PostAceptacionSugerencia implements Handler{
@@ -30,11 +34,20 @@ public class PostAceptacionSugerencia implements Handler{
   )
   @Override
   public void handle(@NotNull Context context) throws Exception {
+    Integer idBuscado = context.pathParamAsClass("id", Integer.class).get();
     String bodyString = context.body();
     AceptacionSugerencia aceptacionSugerencia = context.bodyAsClass(AceptacionSugerencia.class);
     System.out.println("Creando comunidad: " + bodyString);
     System.out.println(aceptacionSugerencia);
     validarNuevaComunidad(aceptacionSugerencia);
+    Fusionador fusionador = new Fusionador();
+    Comunidad comunidad = fusionador.fusionarComunidades(RepoSugerencias.getInstance().getSugerenciaPorId(idBuscado),
+        aceptacionSugerencia.getNombreNuevaComunidad());
+    EntityManager em = BDUtils.getEntityManager();
+    BDUtils.comenzarTransaccion(em);
+    em.persist(comunidad);
+    BDUtils.commit(em);
+    em.close();
     context.status(201);
   }
 

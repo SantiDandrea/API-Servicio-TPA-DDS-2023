@@ -25,6 +25,10 @@ public class RepoSugerencias {
             .getResultList();
     }
 
+    public Sugerencia getSugerenciaPorId(Integer id) {
+        return em.find(Sugerencia.class, id);
+    }
+
     public boolean existeSugerencia(Comunidad comunidad1 , Comunidad comunidad2, LocalDate fechaActual){
         return this.getSugerencias().stream().anyMatch(s ->
                 (s.getComunidad1().equals(comunidad1) && s.getComunidad2().equals(comunidad2) ||

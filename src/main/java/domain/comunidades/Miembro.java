@@ -4,6 +4,7 @@ import domain.clasesTecnicas.Usuario;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Getter
 @Entity
@@ -29,5 +30,18 @@ public class Miembro extends Usuario {
   }
 
   public Miembro() {
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Miembro miembro = (Miembro) o;
+    return id == miembro.id;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
   }
 }
