@@ -24,6 +24,10 @@ public class Main {
       config.plugins.register(new SwaggerPlugin(new SwaggerConfiguration()));
     }).start(7002);
 
+    app.get("/", ctx -> ctx.result("Bienvenido a la API de Sugerencias de Fusiones de Comunidades" +
+            "\n\n" + "Para ver las sugerencias de fusiones de comunidades, ingrese a /api/sugerencias" +
+            "\n\n" + "Para aceptar una sugerencia de fusion de comunidades, ingrese a /api/sugerencias/{id}"));
+
     app.get("/api/sugerencias", new GetSugerenciasHandler());
     app.post("/api/sugerencias/{id}", new PostAceptacionSugerencia());
 
